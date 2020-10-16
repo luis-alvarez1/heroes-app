@@ -1,0 +1,12 @@
+<div class="card animated fadeIn fast">
+    <img src="{{ personaje.giphyUrl }}" class="card-img-top img-fluid" [alt]="personaje.name">
+    <div class="card-block">
+        <h5 class="card-title">{{ personaje.name }}</h5>
+        <p class="card-text">Gender: {{ personaje.gender }}</p>
+        <p class="card-text"><small class="text-muted">Republic Era: {{ personaje.birth_year }}</small></p>
+
+        <button (click)="verMas()" class="btn btn-outline-primary btn-block">
+            Ver mas...
+        </button>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<h1>Personajes <small>Star Wars</small></h1>
+<hr>
+
+<div class="card-columns">
+
+    <app-personajes-tarjeta (personajeSeleccionado)="verMas($event)" [personaje]="foo" [index]="i" *ngFor="let foo of personajes; let i = index"></app-personajes-tarjeta>
+
+</div>
