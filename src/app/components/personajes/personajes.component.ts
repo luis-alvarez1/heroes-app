@@ -6,18 +6,20 @@ import { GiphyService } from '../../shared/giphy.service';
 @Component({
   selector: 'app-personajes',
   templateUrl: './personajes.component.html',
-  styleUrls: ['./personajes.component.css']
+  styleUrls: ['./personajes.component.css'],
 })
 export class PersonajesComponent implements OnInit {
-
   personajes: Array<any>;
 
-  constructor(private personajesService: PersonajesService, private router: Router, private giphyService: GiphyService) { }
+  constructor(
+    private personajesService: PersonajesService,
+    private router: Router,
+    private giphyService: GiphyService
+  ) {}
 
   ngOnInit(): void {
     this.personajesService.getData().subscribe((data) => {
       this.personajes = data.results;
-      console.log(data);
       console.log(this.personajes);
       for (const pjs of this.personajes) {
         this.giphyService
@@ -27,8 +29,7 @@ export class PersonajesComponent implements OnInit {
     });
   }
 
-  verMas( idx: number ){
-    this.router.navigate( ['/heroe', idx] );
+  verMas(idx: number) {
+    this.router.navigate(['/heroe', idx]);
   }
-
 }

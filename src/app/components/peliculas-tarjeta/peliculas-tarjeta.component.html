@@ -1,0 +1,18 @@
+<div class="card animated fadeIn fast">
+  <img
+    src="{{ film.giphyUrl }}"
+    class="card-img-top img-fluid"
+    [alt]="film.title"
+  />
+  <div class="card-block card-body">
+    <h5 class="card-title center">{{ film.title }}</h5>
+    <p class="card-text">Director: {{ film.director }}</p>
+    <p class="card-text">
+      <small class="text-muted">Released: {{ film.release_date | date }}</small>
+    </p>
+
+    <button (click)="openDetails()" class="btn btn-outline-dark btn-block">
+      More Details...
+    </button>
+  </div>
+</div>
