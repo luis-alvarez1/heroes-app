@@ -1,29 +1,51 @@
-<h1>{{ personaje.name | uppercase}} <small> (Republic Era: {{ personaje.birth_year}})</small></h1>
-<hr>
+<h1>
+  {{ personaje.name | uppercase }}
+  <small> (Republic Era: {{ personaje.birth_year }})</small>
+</h1>
+<hr />
 
 <div class="row">
-    <div class="col-md-4">
+  <div class="col-md-4">
+    <img
+      src="{{ personaje.giphyUrl }}"
+      class="card-img-top img-fluid"
+      [alt]="personaje.name"
+    />
+    <br /><br />
+    <a [routerLink]="['/home']" class="btn btn-outline-warning btn-block"
+      >Regresar</a
+    >
+  </div>
 
-        <img src="{{ personaje.giphyUrl }}" class="card-img-top img-fluid" [alt]="personaje.name">
-        <br><br>
-        <a [routerLink]="['/home']" class="btn btn-outline-danger btn-block">Regresar</a>
-    </div>
-
-    <div class="col-md-8">
-        <h3> {{ personaje.name }} </h3>
-        <hr>
-        <p>
-            CARACTERISTICAS
-        </p>
-        <li>Height: {{ personaje.height }}</li>
-        <li>Mass: {{ personaje.mass }}</li>
-        <li>Hair color: {{ personaje.hair_color }}</li>
-        <li>Skin color: {{ personaje.skin_color }}</li>
-        <li>Eyes color: {{ personaje.eye_color }}</li>
-        <li> Gender: {{personaje.gender}}
-            <img *ngIf="personaje.gender=='male'" class="img-logo" src="assets/img/male.png" alt="male">
-            <img *ngIf="personaje.gender=='female'" class="img-logo" src="assets/img/female.png" alt="female">
-            <img *ngIf="personaje.gender=='n/a'" class="img-logo" src="assets/img/robot.png" alt="n/a">
-        </li>
-    </div>
+  <div class="col-md-8">
+    <h3>{{ personaje.name }}</h3>
+    <hr />
+    <p>FEATURES</p>
+    <li>Height: {{ personaje.height }} cm</li>
+    <li>Mass: {{ personaje.mass }} kg</li>
+    <li>Hair color: {{ personaje.hair_color }}</li>
+    <li>Skin color: {{ personaje.skin_color }}</li>
+    <li>Eyes color: {{ personaje.eye_color }}</li>
+    <li>
+      Gender: {{ personaje.gender }}
+      <img
+        *ngIf="personaje.gender == 'male'"
+        class="img-logo"
+        src="assets/img/male.png"
+        alt="male"
+      />
+      <img
+        *ngIf="personaje.gender == 'female'"
+        class="img-logo"
+        src="assets/img/female.png"
+        alt="female"
+      />
+      <img
+        *ngIf="personaje.gender == 'n/a'"
+        class="img-logo"
+        src="assets/img/robot.png"
+        alt="n/a"
+      />
+    </li>
+  </div>
 </div>

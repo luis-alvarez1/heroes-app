@@ -1,37 +1,45 @@
-<div class="d-flex" id="wrapper" [ngClass]="{toggled: open}">
-
-    <!-- Sidebar -->
-    <div class="bg-dark border-dark" id="sidebar-wrapper">
-        <a class="navbar-brand" style="margin-left: 60px;" href="#">
-            <img src="assets/img/icon-starwars.png" width="100" height="100" alt="" loading="lazy">
-        </a>
-        <div class="list-group list-group-flush">
-
-            <a href="#" class="list-group-item list-group-item-action bg-dark txt-color" [routerLink]="['home']">
-                <i class="fas fa-home txt-color"></i> Home
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark txt-color" [routerLink]="['peliculas']">
-                <i class="fas fa-film"></i> Peliculas
-            </a>
-        </div>
+<div class="d-flex" id="wrapper" [ngClass]="{ toggled: open }">
+  <!-- Sidebar -->
+  <div class="bg-dark border-dark" id="sidebar-wrapper">
+    <a class="navbar-brand" style="margin-left: 60px" href="#">
+      <img
+        src="assets/img/icon-starwars.png"
+        width="100"
+        height="100"
+        alt=""
+        loading="lazy"
+      />
+    </a>
+    <div class="list-group list-group-flush">
+      <a
+        href="#"
+        class="list-group-item list-group-item-action bg-dark txt-color"
+        [routerLink]="['home']"
+      >
+        <i class="fas fa-home txt-color"></i> Home
+      </a>
+      <a
+        href="#"
+        class="list-group-item list-group-item-action bg-dark txt-color"
+        [routerLink]="['peliculas']"
+      >
+        <i class="fas fa-film"></i> Films
+      </a>
     </div>
-    <!-- /#sidebar-wrapper -->
+  </div>
+  <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-
-            <button class="fas fa-bars bg-dark txt-color" (click)=" cambiaEstado() "></button>
-
-        </nav>
-        <!-- /#page-content-wrapper -->
-        <div class="container-fluid ">
-
-            <router-outlet>
-
-            </router-outlet>
-
-        </div>
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <button
+        class="fas fa-bars bg-dark txt-color"
+        (click)="toggleSideBar()"
+      ></button>
+    </nav>
+    <!-- /#page-content-wrapper -->
+    <div class="container-fluid">
+      <router-outlet> </router-outlet>
     </div>
+  </div>
 </div>

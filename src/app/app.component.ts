@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  texto: string =  "SI";
+  text: string = 'YES';
   open: boolean = true;
 
-  cambiaEstado() {
-    this.texto = (this.open) ?  "NO" : "SI";
+  toggleSideBar() {
+    this.text = this.open ? 'NO' : 'YES';
     this.open = !this.open;
   }
 }
