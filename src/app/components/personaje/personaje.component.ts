@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PersonajesService } from '../../shared/personajes.service';
 import { ActivatedRoute } from '@angular/router';
 import { GiphyService } from '../../shared/giphy.service';
+import { PeliculasService } from 'src/app/shared/peliculas.service';
 
 @Component({
   selector: 'app-personaje',
@@ -11,12 +12,14 @@ import { GiphyService } from '../../shared/giphy.service';
 })
 export class PersonajeComponent implements OnInit {
   personaje: any = {};
+  peliculas: Array<any>;
   sub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private personajesService: PersonajesService,
-    private giphyService: GiphyService
+    private giphyService: GiphyService,
+    private peliculasService: PeliculasService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,11 @@ export class PersonajeComponent implements OnInit {
           .get(personaje.name)
           .subscribe((url) => (personaje.giphyUrl = url));
       });
+    });
+
+    this.peliculasService.getAllFilms().subscribe((data) => {
+      this.peliculas = data.results;
+      console.log(data.results);
     });
   }
 }

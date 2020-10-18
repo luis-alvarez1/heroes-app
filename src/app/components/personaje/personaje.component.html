@@ -1,26 +1,22 @@
 <h1>
-  {{ personaje.name | uppercase }}
-  <small> (Republic Era: {{ personaje.birth_year }})</small>
+    {{ personaje.name | uppercase }}
+    <small> (Republic Era: {{ personaje.birth_year }})</small>
 </h1>
 <hr />
 
 <div class="row">
-  <div class="col-md-4">
-    <img
-      src="{{ personaje.giphyUrl }}"
-      class="card-img-top img-fluid"
-      [alt]="personaje.name"
-    />
-    <br /><br />
-    <a [routerLink]="['/home']" class="btn btn-outline-warning btn-block"
-      >Regresar</a
+    <div class="col-md-4">
+        <img src="{{ personaje.giphyUrl }}" class="card-img-top img-fluid" [alt]="personaje.name" />
+        <br /><br />
+        <a [routerLink]="['/home']" class="btn btn-outline-warning btn-block">Regresar</a
     >
   </div>
 
   <div class="col-md-8">
     <h3>{{ personaje.name }}</h3>
     <hr />
-    <p>FEATURES</p>
+    <div style="float: left;">
+        <p>FEATURES</p>
     <li>Height: {{ personaje.height }} cm</li>
     <li>Mass: {{ personaje.mass }} kg</li>
     <li>Hair color: {{ personaje.hair_color }}</li>
@@ -47,5 +43,17 @@
         alt="n/a"
       />
     </li>
-  </div>
+    </div>
+
+    <div style="float:left; margin-left: 100px">
+        <p>FILMS</p>
+        <li *ngFor="let pelicula of peliculas">
+            <a href="#">
+                {{pelicula.title}}
+            </a>
+        </li>
+    </div>
+
+
+</div>
 </div>
