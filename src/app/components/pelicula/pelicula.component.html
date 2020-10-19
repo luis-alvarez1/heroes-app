@@ -12,17 +12,17 @@
       [alt]="film.title"
     />
     <br /><br />
-    <a [routerLink]="['/peliculas']" class="btn btn-outline-warning btn-block"
-      >Back</a
-    >
+    <a [routerLink]="['/peliculas']" class="btn btn-outline-warning btn-block">
+      Back
+    </a>
   </div>
 
   <div class="col-md-8">
     <h3>{{ film.title }}</h3>
     <hr />
     <ul class="list-group list-group-flush">
-      <li *ngFor="let planet of film.planets" class="list-group-item">
-        {{ getPlanetName(planet) }}
+      <li *ngFor="let planeta of planetas" class="list-group-item">
+        {{ planeta.name }}
       </li>
     </ul>
   </div>

@@ -13,6 +13,7 @@ import { PlanetasService } from 'src/app/shared/planets.service';
 export class PeliculaComponent implements OnInit {
   film: any = {};
   sub: Subscription;
+  planetas = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,20 +29,20 @@ export class PeliculaComponent implements OnInit {
       this.peliculasService.getFilm(id).subscribe((film: any) => {
         console.log(film);
         this.film = film;
+        this.film.planets.forEach((planetUrl: string) => {
+          const planetId = planetUrl.split('/')[
+            planetUrl.split('/').length - 2
+          ];
+          this.planetasService.getPlanet(planetId).subscribe((planet: any) => {
+            this.planetas.push(planet);
+          });
+        });
+        console.log(this.planetas);
+
         this.giphyService
           .get(film.title)
           .subscribe((url) => (film.giphyUrl = url));
       });
     });
-  }
-
-  getPlanetName(planetUrl: string) {
-    const planetId = planetUrl.split('/')[planetUrl.split('/').length - 2];
-
-    let planetName: string;
-    this.planetasService.getPlanet(planetId).subscribe((planet: any) => {
-      planetName = planet.name;
-    });
-    console.log(planetName);
   }
 }
