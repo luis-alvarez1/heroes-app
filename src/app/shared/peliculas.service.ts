@@ -30,7 +30,7 @@ export class PeliculasService {
   getStarship(id: string) {
     return this.http.get(this.STARSHIPS_API + '/' + id + '/');
   }
-  getSpecie(id: string) {
+  getSpecies(id: string) {
     return this.http.get(this.SPECIES_API + '/' + id + '/');
   }
 }
