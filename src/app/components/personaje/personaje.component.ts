@@ -27,16 +27,14 @@ export class PersonajeComponent implements OnInit {
       const idnum = parseInt(params.id, 10) + 1;
       const id = idnum.toString();
       this.personajesService.get(id).subscribe((personaje: any) => {
+        console.log(personaje.url);
         this.personaje = personaje;
+        this.peliculas = personaje.films;
+        console.log(this.personaje);
         this.giphyService
           .get(personaje.name)
           .subscribe((url) => (personaje.giphyUrl = url));
       });
-    });
-
-    this.peliculasService.getAllFilms().subscribe((data) => {
-      this.peliculas = data.results;
-      console.log(data.results);
     });
   }
 }
