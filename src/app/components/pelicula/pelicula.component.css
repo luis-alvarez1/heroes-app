@@ -5,13 +5,14 @@
 .spaced {
   margin-bottom: 20px;
 }
+
 .scrollableList {
   overflow-y: auto;
-  height: 145px;
+  height: 150px;
 }
 
 .scrollbar-black::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(2, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.11);
   background-color: #f5f5f5;
   border-radius: 10px;
 }
@@ -23,17 +24,17 @@
 
 .scrollbar-black::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(238, 238, 238, 0.473);
-  background-color: rgba(238, 238, 238, 0.473);
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.11);
+  background-color: #000;
 }
 
 .scrollbar-black {
-  scrollbar-color: rgba(238, 238, 238, 0.473) #f5f5f5;
+  scrollbar-color: rgba(255, 255, 255, 0.11) #f5f5f5;
 }
 
 .bordered-black::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  border: 1px solid rgba(238, 238, 238, 0.473);
+  border: 1px solid rgba(255, 255, 255, 0.11);
 }
 
 .bordered-black::-webkit-scrollbar-thumb {

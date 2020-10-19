@@ -37,7 +37,6 @@ export class PeliculaComponent implements OnInit {
         this.fetchCharacters(this.film);
         this.fetchStarships(this.film);
         this.fetchSpecies(this.film);
-        console.log(this.species);
 
         this.giphyService
           .get(film.title)
@@ -67,6 +66,7 @@ export class PeliculaComponent implements OnInit {
       });
     });
   }
+
   fetchStarships(film: any) {
     film.starships.forEach((starshipUrl: any) => {
       const starshipsId = starshipUrl.split('/')[
@@ -75,17 +75,18 @@ export class PeliculaComponent implements OnInit {
 
       this.peliculasService
         .getStarship(starshipsId)
-        .subscribe((starships: any) => {
-          this.starships.push(starships);
+        .subscribe((starship: any) => {
+          this.starships.push(starship);
         });
     });
   }
+
   fetchSpecies(film: any) {
     film.species.forEach((speciesUrl: any) => {
       const speciesId = speciesUrl.split('/')[speciesUrl.split('/').length - 2];
 
       this.peliculasService
-        .getSpecie(speciesId)
+        .getSpecies(speciesId)
         .subscribe((currrentsSpecies: any) => {
           this.species.push(currrentsSpecies);
         });
