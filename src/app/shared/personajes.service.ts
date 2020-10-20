@@ -24,4 +24,12 @@ export class PersonajesService {
   get(id: string) {
     return this.http.get(this.PJS_API + '/' + id + '/');
   }
+  fetchMore(page: number) {
+    const pageNumber = page.toString();
+    return this.http.get(this.PJS_API, {
+      params: {
+        page: pageNumber
+      }
+    });
+  }
 }

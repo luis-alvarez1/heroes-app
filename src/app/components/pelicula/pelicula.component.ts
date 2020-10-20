@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GiphyService } from 'src/app/shared/giphy.service';
 import { PeliculasService } from 'src/app/shared/peliculas.service';
@@ -15,11 +15,14 @@ export class PeliculaComponent implements OnInit {
   sub: Subscription;
   planets = [];
   characters = [];
+  character = [];
   starships = [];
   species = [];
+  @Input() index: number;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private peliculasService: PeliculasService,
     private giphyService: GiphyService,
     private personajesService: PersonajesService
@@ -43,6 +46,16 @@ export class PeliculaComponent implements OnInit {
           .subscribe((url) => (film.giphyUrl = url));
       });
     });
+
+    this.peliculasService.getAllFilms()
+    .subscribe(data => {
+      this.character = data.results.map(pj => {
+        return {
+          ...pj,
+          pjId: pj.url.split('/')[pj.url.split('/').length - 2]
+        };
+      });
+    });
   }
 
   fetchPlanets(film: any) {
@@ -60,11 +73,11 @@ export class PeliculaComponent implements OnInit {
       const characterId = characterUrl.split('/')[
         characterUrl.split('/').length - 2
       ];
-
       this.personajesService.get(characterId).subscribe((character) => {
         this.characters.push(character);
       });
     });
+
   }
 
   fetchStarships(film: any) {
@@ -92,4 +105,13 @@ export class PeliculaComponent implements OnInit {
         });
     });
   }
+
+  fetchCharacter(url: any) {
+      const characterId = url.split('/')[
+        url.split('/').length - 2
+      ];
+      this.router.navigate( ['/personaje', characterId - 1] );
+      console.log( characterId - 1);
+  }
+
 }

@@ -1,12 +1,9 @@
 <h1>Characters <small>Star Wars</small></h1>
 <hr />
 
-<div class="card-columns">
-  <app-personajes-tarjeta
-    (personajeSeleccionado)="verMas($event)"
-    [personaje]="personaje"
-    [index]="i"
-    *ngFor="let personaje of personajes; let i = index"
-  ></app-personajes-tarjeta>
+<div class="card-group">
+    <app-personajes-tarjeta [personaje]="personaje" [index]="i" *ngFor="let personaje of personajes; let i = index"></app-personajes-tarjeta>
 </div>
+<button (click)="getMoreCharacters()">Mas</button>
+<hr>
 <app-scroll-to-top></app-scroll-to-top>

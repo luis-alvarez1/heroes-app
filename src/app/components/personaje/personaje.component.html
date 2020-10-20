@@ -15,17 +15,6 @@
   <div class="col-md-8">
     <h3>{{ personaje.name }}</h3>
     <hr />
-<<<<<<< HEAD
-    <div style="float: left;">
-        <p>FEATURES</p>
-    <li>Height: {{ personaje.height }} cm</li>
-    <li>Mass: {{ personaje.mass }} kg</li>
-    <li>Hair color: {{ personaje.hair_color }}</li>
-    <li>Skin color: {{ personaje.skin_color }}</li>
-    <li>Eyes color: {{ personaje.eye_color }}</li>
-    <li>
-      Gender: {{ personaje.gender }}
-=======
 
     <p><strong>FEATURES </strong></p>
     <li class="spaced"><strong> Height:</strong> {{ personaje.height }} cm</li>
@@ -41,7 +30,6 @@
     </li>
     <li class="spaced">
       <strong> Gender: </strong> {{ personaje.gender }}
->>>>>>> master
       <img
         *ngIf="personaje.gender == 'male'"
         class="img-logo"
@@ -61,22 +49,6 @@
         alt="n/a"
       />
     </li>
-<<<<<<< HEAD
-    </div>
-
-    <div style="float:left; margin-left: 100px">
-        <p>FILMS</p>
-        <li *ngFor="let pelicula of peliculas">
-            <a href="#">
-                {{pelicula}}
-            </a>
-        </li>
-    </div>
-
-
-</div>
-</div>
-=======
     <div class="card spaced" style="width: 100%">
       <div class="card-header active list-group-item-warning">
         <li>Films</li>
@@ -89,6 +61,7 @@
             *ngFor="let film of films"
             type="button"
             class="list-group-item list-group-item-action"
+            (click)="fetchFilm(film.url)"
           >
             {{ film.title }}
             <small>
@@ -132,4 +105,3 @@
   </div>
 </div>
 <app-scroll-to-top></app-scroll-to-top>
->>>>>>> master
