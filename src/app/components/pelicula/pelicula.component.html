@@ -1,5 +1,6 @@
 <h1>
   {{ film.title | uppercase }}
+  <!-- {{ film.title }} -->
   <small> ({{ film.release_date }})</small>
 </h1>
 <hr />
@@ -12,18 +13,108 @@
       [alt]="film.title"
     />
     <br /><br />
-    <a [routerLink]="['/peliculas']" class="btn btn-outline-warning btn-block"
-      >Back</a
-    >
+    <a [routerLink]="['/peliculas']" class="btn btn-outline-warning btn-block">
+      Back
+    </a>
   </div>
 
   <div class="col-md-8">
-    <h3>{{ film.title }}</h3>
+    <h3>
+      {{ film.title }} <small>(Episode: {{ film.episode_id }})</small>
+    </h3>
     <hr />
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let planet of film.planets" class="list-group-item">
-        {{ getPlanetName(planet) }}
-      </li>
-    </ul>
+
+    <li class="spaced"><strong> Episode: </strong> {{ film.episode_id }}</li>
+    <li class="spaced"><strong> Director: </strong> {{ film.director }}</li>
+    <li class="spaced"><strong> Producer: </strong> {{ film.producer }}</li>
+    <li class="spaced">
+      <strong> Release Date: </strong> {{ film.release_date | date }}
+    </li>
+
+    <li class="spaced"><strong> Opening Crawl: </strong></li>
+    <div class="card container spaced">
+      <p
+        class="card-text scrollable scrollbar scrollbar-black bordered-black thin"
+      >
+        {{ film.opening_crawl }}
+      </p>
+    </div>
+
+    <div class="row d-flex justify-content-between">
+      <div class="col-md-3">
+        <div class="card spaced" style="width: 18rem">
+          <div class="card-header active list-group-item-dark">
+            <li>Characters</li>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div
+              class="scrollableList scrollbar scrollbar-black bordered-black thin"
+            >
+              <button
+                *ngFor="let character of characters"
+                type="button"
+                class="list-group-item list-group-item-action"
+              >
+                {{ character.name }}
+              </button>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3" style="margin-right: 220px">
+        <div class="card spaced" style="width: 18rem">
+          <div class="card-header active list-group-item-warning">
+            <li>Planets</li>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div
+              class="scrollableList scrollbar scrollbar-black bordered-black thin"
+            >
+              <li *ngFor="let planet of planets" class="list-group-item">
+                {{ planet.name }}
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+      <div class="col-md-3">
+        <div class="card spaced" style="width: 18rem">
+          <div class="card-header active list-group-item-warning">
+            <li>Starships</li>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div
+              class="scrollableList scrollbar scrollbar-black bordered-black thin"
+            >
+              <li *ngFor="let starships of starships" class="list-group-item">
+                {{ starships.name }}
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3" style="margin-right: 220px">
+        <div class="card spaced" style="width: 18rem">
+          <div class="card-header active list-group-item-dark">
+            <li>Species</li>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div
+              class="scrollableList scrollbar scrollbar-black bordered-black thin"
+            >
+              <li
+                *ngFor="let currrentsSpecies of species"
+                class="list-group-item"
+              >
+                {{ currrentsSpecies.name }}
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<app-scroll-to-top></app-scroll-to-top>

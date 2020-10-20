@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GiphyService } from 'src/app/shared/giphy.service';
 import { PeliculasService } from 'src/app/shared/peliculas.service';
-import { PlanetasService } from 'src/app/shared/planets.service';
+import { PersonajesService } from 'src/app/shared/personajes.service';
 
 @Component({
   selector: 'app-pelicula',
@@ -13,12 +13,16 @@ import { PlanetasService } from 'src/app/shared/planets.service';
 export class PeliculaComponent implements OnInit {
   film: any = {};
   sub: Subscription;
+  planets = [];
+  characters = [];
+  starships = [];
+  species = [];
 
   constructor(
     private route: ActivatedRoute,
     private peliculasService: PeliculasService,
     private giphyService: GiphyService,
-    private planetasService: PlanetasService
+    private personajesService: PersonajesService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +32,12 @@ export class PeliculaComponent implements OnInit {
       this.peliculasService.getFilm(id).subscribe((film: any) => {
         console.log(film);
         this.film = film;
+
+        this.fetchPlanets(this.film);
+        this.fetchCharacters(this.film);
+        this.fetchStarships(this.film);
+        this.fetchSpecies(this.film);
+
         this.giphyService
           .get(film.title)
           .subscribe((url) => (film.giphyUrl = url));
@@ -35,13 +45,51 @@ export class PeliculaComponent implements OnInit {
     });
   }
 
-  getPlanetName(planetUrl: string) {
-    const planetId = planetUrl.split('/')[planetUrl.split('/').length - 2];
+  fetchPlanets(film: any) {
+    film.planets.forEach((planetUrl: string) => {
+      const planetId = planetUrl.split('/')[planetUrl.split('/').length - 2];
 
-    let planetName: string;
-    this.planetasService.getPlanet(planetId).subscribe((planet: any) => {
-      planetName = planet.name;
+      this.peliculasService.getPlanet(planetId).subscribe((planet: any) => {
+        this.planets.push(planet);
+      });
     });
-    console.log(planetName);
+  }
+
+  fetchCharacters(film: any) {
+    film.characters.forEach((characterUrl: any) => {
+      const characterId = characterUrl.split('/')[
+        characterUrl.split('/').length - 2
+      ];
+
+      this.personajesService.get(characterId).subscribe((character) => {
+        this.characters.push(character);
+      });
+    });
+  }
+
+  fetchStarships(film: any) {
+    film.starships.forEach((starshipUrl: any) => {
+      const starshipsId = starshipUrl.split('/')[
+        starshipUrl.split('/').length - 2
+      ];
+
+      this.peliculasService
+        .getStarship(starshipsId)
+        .subscribe((starship: any) => {
+          this.starships.push(starship);
+        });
+    });
+  }
+
+  fetchSpecies(film: any) {
+    film.species.forEach((speciesUrl: any) => {
+      const speciesId = speciesUrl.split('/')[speciesUrl.split('/').length - 2];
+
+      this.peliculasService
+        .getSpecies(speciesId)
+        .subscribe((currrentsSpecies: any) => {
+          this.species.push(currrentsSpecies);
+        });
+    });
   }
 }

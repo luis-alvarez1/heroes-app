@@ -15,6 +15,7 @@
   <div class="col-md-8">
     <h3>{{ personaje.name }}</h3>
     <hr />
+<<<<<<< HEAD
     <div style="float: left;">
         <p>FEATURES</p>
     <li>Height: {{ personaje.height }} cm</li>
@@ -24,6 +25,23 @@
     <li>Eyes color: {{ personaje.eye_color }}</li>
     <li>
       Gender: {{ personaje.gender }}
+=======
+
+    <p><strong>FEATURES </strong></p>
+    <li class="spaced"><strong> Height:</strong> {{ personaje.height }} cm</li>
+    <li class="spaced"><strong> Mass:</strong> {{ personaje.mass }} kg</li>
+    <li class="spaced">
+      <strong> Hair color:</strong> {{ personaje.hair_color }}
+    </li>
+    <li class="spaced">
+      <strong> Skin color:</strong> {{ personaje.skin_color }}
+    </li>
+    <li class="spaced">
+      <strong> Eyes color:</strong> {{ personaje.eye_color }}
+    </li>
+    <li class="spaced">
+      <strong> Gender: </strong> {{ personaje.gender }}
+>>>>>>> master
       <img
         *ngIf="personaje.gender == 'male'"
         class="img-logo"
@@ -43,6 +61,7 @@
         alt="n/a"
       />
     </li>
+<<<<<<< HEAD
     </div>
 
     <div style="float:left; margin-left: 100px">
@@ -57,3 +76,60 @@
 
 </div>
 </div>
+=======
+    <div class="card spaced" style="width: 100%">
+      <div class="card-header active list-group-item-warning">
+        <li>Films</li>
+      </div>
+      <ul class="list-group list-group-flush">
+        <div
+          class="scrollableList scrollbar scrollbar-black bordered-dark thin"
+        >
+          <button
+            *ngFor="let film of films"
+            type="button"
+            class="list-group-item list-group-item-action"
+          >
+            {{ film.title }}
+            <small>
+              <strong> ({{ film.release_date }}) </strong>
+            </small>
+          </button>
+        </div>
+      </ul>
+    </div>
+
+    <div *ngIf="vehicules.length > 0">
+      <h4 class="mt-0 mb-1"><li>Vehicles</li></h4>
+      <hr />
+      <div class="media" *ngFor="let vehicule of vehicules">
+        <div class="media-body mb-1">
+          <h5 class="mt-0 mb-1">{{ vehicule.name }}</h5>
+          Manufacturer: {{ vehicule.manufacturer }}
+        </div>
+        <img
+          src="{{ vehicule.giphyUrl }}"
+          class="ml-3 img-vehicle mb-1"
+          alt="{{ vehicule.name }}"
+        />
+      </div>
+    </div>
+    <div *ngIf="starships.length > 0">
+      <h4 class="mt-0 mb-1"><li>Starships</li></h4>
+      <hr />
+      <div class="media" *ngFor="let starship of starships">
+        <div class="media-body mb-1">
+          <h5 class="mt-0 mb-1">{{ starship.name }}</h5>
+          Type: {{ starship.starship_class }}
+        </div>
+        <img
+          src="{{ starship.giphyUrl }}"
+          class="ml-3 img-vehicle mb-1"
+          alt="{{ starship.name }}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<app-scroll-to-top></app-scroll-to-top>
+>>>>>>> master
