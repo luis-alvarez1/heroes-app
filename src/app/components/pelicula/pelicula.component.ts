@@ -33,7 +33,6 @@ export class PeliculaComponent implements OnInit {
       const idnum = parseInt(params.id, 10) + 1;
       const id = idnum.toString();
       this.peliculasService.getFilm(id).subscribe((film: any) => {
-        console.log(film);
         this.film = film;
 
         this.fetchPlanets(this.film);
@@ -111,7 +110,6 @@ export class PeliculaComponent implements OnInit {
         url.split('/').length - 2
       ];
       this.router.navigate( ['/personaje', characterId - 1] );
-      console.log( characterId - 1);
   }
 
 }

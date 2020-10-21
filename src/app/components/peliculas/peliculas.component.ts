@@ -13,14 +13,12 @@ export class PeliculasComponent implements OnInit {
 
   constructor(
     private peliculasService: PeliculasService,
-    private router: Router,
     private giphyService: GiphyService
   ) {}
 
   ngOnInit(): void {
     this.peliculasService.getAllFilms().subscribe((data) => {
       this.films = data.results;
-      console.log(this.films);
 
       for (const film of this.films) {
         this.giphyService
@@ -28,9 +26,5 @@ export class PeliculasComponent implements OnInit {
           .subscribe((url) => (film.giphyUrl = url));
       }
     });
-  }
-
-  showDetail(idx: number) {
-    this.router.navigate(['/heroe', idx]);
   }
 }

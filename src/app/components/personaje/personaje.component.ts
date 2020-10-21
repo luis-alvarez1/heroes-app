@@ -31,14 +31,11 @@ export class PersonajeComponent implements OnInit {
       const idnum = parseInt(params.id, 10) + 1;
       const id = idnum.toString();
       this.personajesService.get(id).subscribe((personaje: any) => {
-        console.log(personaje.url);
         this.personaje = personaje;
-        console.log(this.personaje);
 
         this.fetchFilms(this.personaje);
         this.fetchVehicules(this.personaje);
         this.fetchStarships(this.personaje);
-        console.log(this.starships);
 
         this.giphyService
           .get(personaje.name)
@@ -111,6 +108,5 @@ export class PersonajeComponent implements OnInit {
       url.split('/').length - 2
     ];
     this.router.navigate( ['/pelicula', filmId - 1] );
-    console.log( filmId - 1);
 }
 }

@@ -19,7 +19,6 @@ export class PersonajesComponent implements OnInit {
   ngOnInit(): void {
     this.personajesService.getData().subscribe((data) => {
       this.personajes = data.results;
-      console.log(this.personajes);
       for (const pjs of this.personajes) {
         this.giphyService
           .get(pjs.name)
@@ -37,8 +36,6 @@ export class PersonajesComponent implements OnInit {
           .get(pjs.name)
           .subscribe((url) => (pjs.giphyUrl = url));
       }
-      console.log(data.results);
-      console.log(this.page);
     });
   }
 }
