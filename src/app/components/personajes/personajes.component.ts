@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { PersonajesService } from '../../shared/personajes.service';
 import { GiphyService } from '../../shared/giphy.service';
 
@@ -10,17 +9,16 @@ import { GiphyService } from '../../shared/giphy.service';
 })
 export class PersonajesComponent implements OnInit {
   personajes: Array<any>;
+  page = 1;
 
   constructor(
     private personajesService: PersonajesService,
-    private router: Router,
     private giphyService: GiphyService
   ) {}
 
   ngOnInit(): void {
     this.personajesService.getData().subscribe((data) => {
       this.personajes = data.results;
-      console.log(this.personajes);
       for (const pjs of this.personajes) {
         this.giphyService
           .get(pjs.name)
@@ -29,7 +27,15 @@ export class PersonajesComponent implements OnInit {
     });
   }
 
-  verMas(idx: number) {
-    this.router.navigate(['/heroe', idx]);
+  getMoreCharacters(){
+    this.page += 1;
+    this.personajesService.fetchMore(this.page).subscribe((data: any) => {
+      this.personajes = [...this.personajes,...data.results]
+      for (const pjs of this.personajes) {
+        this.giphyService
+          .get(pjs.name)
+          .subscribe((url) => (pjs.giphyUrl = url));
+      }
+    });
   }
 }

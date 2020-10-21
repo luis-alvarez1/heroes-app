@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PersonajesService } from '../../shared/personajes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GiphyService } from '../../shared/giphy.service';
 import { PeliculasService } from 'src/app/shared/peliculas.service';
 
@@ -16,9 +16,11 @@ export class PersonajeComponent implements OnInit {
   films = [];
   vehicules = [];
   starships = [];
+  @Input() index: number;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private personajesService: PersonajesService,
     private giphyService: GiphyService,
     private peliculasService: PeliculasService
@@ -30,12 +32,10 @@ export class PersonajeComponent implements OnInit {
       const id = idnum.toString();
       this.personajesService.get(id).subscribe((personaje: any) => {
         this.personaje = personaje;
-        console.log(this.personaje);
 
         this.fetchFilms(this.personaje);
         this.fetchVehicules(this.personaje);
         this.fetchStarships(this.personaje);
-        console.log(this.starships);
 
         this.giphyService
           .get(personaje.name)
@@ -97,10 +97,16 @@ export class PersonajeComponent implements OnInit {
   fetchFilms(character: any) {
     character.films.forEach((filmUrl: string) => {
       const filmId = filmUrl.split('/')[filmUrl.split('/').length - 2];
-
       this.peliculasService.getFilm(filmId).subscribe((film: any) => {
         this.films.push(film);
       });
     });
   }
+
+  fetchFilm(url: any) {
+    const filmId = url.split('/')[
+      url.split('/').length - 2
+    ];
+    this.router.navigate( ['/pelicula', filmId - 1] );
+}
 }

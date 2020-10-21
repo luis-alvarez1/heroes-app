@@ -20,6 +20,10 @@ export class PeliculasService {
     return this.http.get(this.FILMS_API);
   }
 
+  getTitle(url: any) {
+    return this.http.get(url);
+  }
+
   getFilm(id: string) {
     return this.http.get(this.FILMS_API + '/' + id + '/');
   }
