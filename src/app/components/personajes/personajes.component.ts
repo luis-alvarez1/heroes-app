@@ -14,7 +14,7 @@ export class PersonajesComponent implements OnInit {
   constructor(
     private personajesService: PersonajesService,
     private giphyService: GiphyService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.personajesService.getData().subscribe((data) => {
@@ -23,18 +23,28 @@ export class PersonajesComponent implements OnInit {
         this.giphyService
           .get(pjs.name)
           .subscribe((url) => (pjs.giphyUrl = url));
+
+        if (pjs.name == "Ki-Adi-Mundi") {
+          pjs.giphyUrl = '../../assets/img/KiAdiMundi.jpg'
+          console.log(pjs.giphyUrl)
+        }
       }
     });
   }
 
-  getMoreCharacters(){
+  getMoreCharacters() {
     this.page += 1;
     this.personajesService.fetchMore(this.page).subscribe((data: any) => {
-      this.personajes = [...this.personajes,...data.results]
+      this.personajes = [...this.personajes, ...data.results]
       for (const pjs of this.personajes) {
         this.giphyService
           .get(pjs.name)
           .subscribe((url) => (pjs.giphyUrl = url));
+
+        if (pjs.name == "Ki-Adi-Mundi") {
+          pjs.giphyUrl = '../../assets/img/KiAdiMundi.jpg'
+          console.log(pjs.giphyUrl)
+        }
       }
     });
   }
