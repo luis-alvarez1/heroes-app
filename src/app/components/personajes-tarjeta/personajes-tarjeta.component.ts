@@ -20,8 +20,7 @@ export class PersonajesTarjetaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  verMas(){
-
+  openDetails(): void{
     this.router.navigate( ['/personaje', this.index] );
   }
 

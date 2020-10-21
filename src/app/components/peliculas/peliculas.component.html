@@ -2,12 +2,7 @@
 <hr />
 
 <div class="card-columns">
-  <app-peliculas-tarjeta
-    (personajeSeleccionado)="showDetail($event)"
-    [film]="film"
-    [index]="i"
-    *ngFor="let film of films; let i = index"
-  ></app-peliculas-tarjeta>
+    <app-peliculas-tarjeta [film]="film" [index]="i" *ngFor="let film of films; let i = index"></app-peliculas-tarjeta>
 </div>
 
 <app-scroll-to-top></app-scroll-to-top>
