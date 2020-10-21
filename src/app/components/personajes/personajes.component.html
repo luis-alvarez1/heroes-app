@@ -1,9 +1,9 @@
 <h1>Characters <small>Star Wars</small></h1>
 <hr />
 
-<div class="card-group">
+<div class="card-group justify-content-center">
     <app-personajes-tarjeta [personaje]="personaje" [index]="i" *ngFor="let personaje of personajes; let i = index"></app-personajes-tarjeta>
 </div>
-<button (click)="getMoreCharacters()">Mas</button>
+<button class="btn btn-outline-dark btn-block btnWidth" (click)="getMoreCharacters()">More Characters...</button>
 <hr>
 <app-scroll-to-top></app-scroll-to-top>
